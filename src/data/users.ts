@@ -1,0 +1,137 @@
+import type { RoleDefinition, User } from "@/types/user";
+
+/** TODO: Replace mock data with backend API + real authentication */
+
+export const users: User[] = [
+  {
+    id: "usr-001",
+    name: "Aarav Sharma",
+    email: "aarav.sharma@example.com",
+    phone: "+91 98200 11223",
+    role: "customer",
+    status: "active",
+    joinedOn: "2024-11-04",
+    totalOrders: 14,
+    lastOrderDate: "2026-08-22",
+    addresses: [
+      {
+        id: "adr-001",
+        label: "Home",
+        line1: "Flat 402, Sunrise Residency",
+        line2: "Baner Road",
+        city: "Pune",
+        state: "Maharashtra",
+        pincode: "411045",
+        isDefault: true,
+      },
+      {
+        id: "adr-002",
+        label: "Office",
+        line1: "3rd Floor, Tech Park One",
+        city: "Pune",
+        state: "Maharashtra",
+        pincode: "411014",
+        isDefault: false,
+      },
+    ],
+  },
+  {
+    id: "usr-002",
+    name: "Meera Iyer",
+    email: "meera.iyer@example.com",
+    phone: "+91 90040 55112",
+    role: "customer",
+    status: "active",
+    joinedOn: "2025-02-18",
+    totalOrders: 7,
+    lastOrderDate: "2026-08-30",
+    addresses: [],
+  },
+  {
+    id: "usr-003",
+    name: "Rohit Verma",
+    email: "rohit.verma@example.com",
+    phone: "+91 88776 21340",
+    role: "customer",
+    status: "inactive",
+    joinedOn: "2025-06-09",
+    totalOrders: 2,
+    lastOrderDate: "2026-03-11",
+    addresses: [],
+  },
+  {
+    id: "usr-004",
+    name: "Ananya Nair",
+    email: "ananya.nair@example.com",
+    phone: "+91 99870 44521",
+    role: "customer",
+    status: "active",
+    joinedOn: "2026-01-21",
+    totalOrders: 5,
+    lastOrderDate: "2026-08-28",
+    addresses: [],
+  },
+  {
+    id: "usr-101",
+    name: "Dr. Kavita Rao",
+    email: "pharmacist01@meditrack.example",
+    phone: "+91 90011 77220",
+    role: "pharmacist",
+    status: "active",
+    joinedOn: "2024-08-01",
+    totalOrders: 0,
+    addresses: [],
+  },
+  {
+    id: "usr-102",
+    name: "Suresh Patil",
+    email: "inventory01@meditrack.example",
+    phone: "+91 90055 66112",
+    role: "inventory-manager",
+    status: "active",
+    joinedOn: "2024-09-12",
+    totalOrders: 0,
+    addresses: [],
+  },
+  {
+    id: "usr-103",
+    name: "Neha Gupta",
+    email: "admin01@meditrack.example",
+    phone: "+91 90099 33445",
+    role: "admin",
+    status: "active",
+    joinedOn: "2024-07-15",
+    totalOrders: 0,
+    addresses: [],
+  },
+];
+
+/** The signed-in customer used across customer pages (mock session). */
+export const currentCustomer: User = users[0]!;
+
+export const roleDefinitions: RoleDefinition[] = [
+  {
+    role: "customer",
+    label: "Customer",
+    description: "Shops medicines and manages their own orders and prescriptions.",
+    permissions: ["Browse", "Cart", "Wishlist", "Orders", "Prescriptions", "Profile"],
+  },
+  {
+    role: "pharmacist",
+    label: "Pharmacist",
+    description: "Reviews prescriptions and manages medicine-related order records.",
+    permissions: ["Prescription review", "Order management", "Medicine-related records"],
+  },
+  {
+    role: "inventory-manager",
+    label: "Inventory Manager",
+    description: "Owns stock accuracy, batches and replenishment requests.",
+    permissions: ["Inventory", "Batches", "Replenishment", "Stock receiving"],
+  },
+  {
+    role: "admin",
+    label: "Admin",
+    description: "Full system access including users, audit logs and settings.",
+    permissions: ["Users", "Inventory", "Orders", "Audit logs", "System settings"],
+  },
+];
