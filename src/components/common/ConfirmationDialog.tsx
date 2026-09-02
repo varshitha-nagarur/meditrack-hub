@@ -4,7 +4,7 @@ import { Modal } from "./Modal";
 interface ConfirmationDialogProps {
   open: boolean;
   title: string;
-  description?: string;
+  description?: string | undefined;
   confirmLabel?: string;
   tone?: "primary" | "danger" | "success";
   onConfirm: () => void;

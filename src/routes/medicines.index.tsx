@@ -14,9 +14,12 @@ const description =
   "Browse 30 medicines with live stock status, expiry visibility and prescription flags.";
 
 export const Route = createFileRoute("/medicines/")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    category: typeof search.category === "string" ? (search.category as MedicineCategoryId) : undefined,
-  }),
+  validateSearch: (
+    search: Record<string, unknown>,
+  ): { category?: MedicineCategoryId | undefined } => {
+    const value = search["category"];
+    return typeof value === "string" ? { category: value as MedicineCategoryId } : {};
+  },
   head: () => ({
     meta: [
       { title },
