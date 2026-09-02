@@ -24,6 +24,7 @@ import { Route as MedicinesIdRouteImport } from './routes/medicines.$id'
 import { Route as OrdersIndexRouteImport } from './routes/orders.index'
 import { Route as OrdersIdRouteImport } from './routes/orders.$id'
 import { Route as AdminInventoryIndexRouteImport } from './routes/admin.inventory.index'
+import { Route as AdminInventoryScanRouteImport } from './routes/admin.inventory.scan'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -100,6 +101,11 @@ const AdminInventoryIndexRoute = AdminInventoryIndexRouteImport.update({
   path: '/inventory/',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminInventoryScanRoute = AdminInventoryScanRouteImport.update({
+  id: '/inventory/scan',
+  path: '/inventory/scan',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -116,6 +122,7 @@ export interface FileRoutesByFullPath {
   '/admin/': typeof AdminIndexRoute
   '/medicines/': typeof MedicinesIndexRoute
   '/orders/': typeof OrdersIndexRoute
+  '/admin/inventory/scan': typeof AdminInventoryScanRoute
   '/admin/inventory/': typeof AdminInventoryIndexRoute
 }
 export interface FileRoutesByTo {
@@ -132,6 +139,7 @@ export interface FileRoutesByTo {
   '/admin': typeof AdminIndexRoute
   '/medicines': typeof MedicinesIndexRoute
   '/orders': typeof OrdersIndexRoute
+  '/admin/inventory/scan': typeof AdminInventoryScanRoute
   '/admin/inventory': typeof AdminInventoryIndexRoute
 }
 export interface FileRoutesById {
@@ -150,6 +158,7 @@ export interface FileRoutesById {
   '/admin/': typeof AdminIndexRoute
   '/medicines/': typeof MedicinesIndexRoute
   '/orders/': typeof OrdersIndexRoute
+  '/admin/inventory/scan': typeof AdminInventoryScanRoute
   '/admin/inventory/': typeof AdminInventoryIndexRoute
 }
 export interface FileRouteTypes {
@@ -169,6 +178,7 @@ export interface FileRouteTypes {
     | '/admin/'
     | '/medicines/'
     | '/orders/'
+    | '/admin/inventory/scan'
     | '/admin/inventory/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -185,6 +195,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/medicines'
     | '/orders'
+    | '/admin/inventory/scan'
     | '/admin/inventory'
   id:
     | '__root__'
@@ -202,6 +213,7 @@ export interface FileRouteTypes {
     | '/admin/'
     | '/medicines/'
     | '/orders/'
+    | '/admin/inventory/scan'
     | '/admin/inventory/'
   fileRoutesById: FileRoutesById
 }
@@ -328,16 +340,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminInventoryIndexRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/inventory/scan': {
+      id: '/admin/inventory/scan'
+      path: '/inventory/scan'
+      fullPath: '/admin/inventory/scan'
+      preLoaderRoute: typeof AdminInventoryScanRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
 
 interface AdminRouteChildren {
   AdminIndexRoute: typeof AdminIndexRoute
+  AdminInventoryScanRoute: typeof AdminInventoryScanRoute
   AdminInventoryIndexRoute: typeof AdminInventoryIndexRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
   AdminIndexRoute: AdminIndexRoute,
+  AdminInventoryScanRoute: AdminInventoryScanRoute,
   AdminInventoryIndexRoute: AdminInventoryIndexRoute,
 }
 
