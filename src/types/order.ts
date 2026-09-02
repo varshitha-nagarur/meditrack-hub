@@ -28,7 +28,7 @@ export interface CartItem extends OrderItem {
 export interface OrderTimelineStep {
   key: OrderStatus | "payment-confirmed";
   label: string;
-  timestamp?: string;
+  timestamp?: string | undefined;
   completed: boolean;
 }
 

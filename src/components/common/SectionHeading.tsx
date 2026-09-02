@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 interface SectionHeadingProps {
   title: string;
-  description?: string;
+  description?: string | undefined;
   action?: ReactNode;
 }
 
