@@ -23,6 +23,7 @@ import { Route as AdminAuditLogsRouteImport } from './routes/admin.audit-logs'
 import { Route as AdminCustomersRouteImport } from './routes/admin.customers'
 import { Route as AdminOrdersRouteImport } from './routes/admin.orders'
 import { Route as AdminPrescriptionsRouteImport } from './routes/admin.prescriptions'
+import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
 import { Route as AdminSupplyChainRouteImport } from './routes/admin.supply-chain'
 import { Route as AdminUsersRouteImport } from './routes/admin.users'
 import { Route as MedicinesIndexRouteImport } from './routes/medicines.index'
@@ -102,6 +103,11 @@ const AdminPrescriptionsRoute = AdminPrescriptionsRouteImport.update({
   path: '/prescriptions',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminSettingsRoute = AdminSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminSupplyChainRoute = AdminSupplyChainRouteImport.update({
   id: '/supply-chain',
   path: '/supply-chain',
@@ -157,6 +163,7 @@ export interface FileRoutesByFullPath {
   '/admin/customers': typeof AdminCustomersRoute
   '/admin/orders': typeof AdminOrdersRoute
   '/admin/prescriptions': typeof AdminPrescriptionsRoute
+  '/admin/settings': typeof AdminSettingsRoute
   '/admin/supply-chain': typeof AdminSupplyChainRoute
   '/admin/users': typeof AdminUsersRoute
   '/medicines/$id': typeof MedicinesIdRoute
@@ -180,6 +187,7 @@ export interface FileRoutesByTo {
   '/admin/customers': typeof AdminCustomersRoute
   '/admin/orders': typeof AdminOrdersRoute
   '/admin/prescriptions': typeof AdminPrescriptionsRoute
+  '/admin/settings': typeof AdminSettingsRoute
   '/admin/supply-chain': typeof AdminSupplyChainRoute
   '/admin/users': typeof AdminUsersRoute
   '/medicines/$id': typeof MedicinesIdRoute
@@ -205,6 +213,7 @@ export interface FileRoutesById {
   '/admin/customers': typeof AdminCustomersRoute
   '/admin/orders': typeof AdminOrdersRoute
   '/admin/prescriptions': typeof AdminPrescriptionsRoute
+  '/admin/settings': typeof AdminSettingsRoute
   '/admin/supply-chain': typeof AdminSupplyChainRoute
   '/admin/users': typeof AdminUsersRoute
   '/medicines/$id': typeof MedicinesIdRoute
@@ -231,6 +240,7 @@ export interface FileRouteTypes {
     | '/admin/customers'
     | '/admin/orders'
     | '/admin/prescriptions'
+    | '/admin/settings'
     | '/admin/supply-chain'
     | '/admin/users'
     | '/medicines/$id'
@@ -254,6 +264,7 @@ export interface FileRouteTypes {
     | '/admin/customers'
     | '/admin/orders'
     | '/admin/prescriptions'
+    | '/admin/settings'
     | '/admin/supply-chain'
     | '/admin/users'
     | '/medicines/$id'
@@ -278,6 +289,7 @@ export interface FileRouteTypes {
     | '/admin/customers'
     | '/admin/orders'
     | '/admin/prescriptions'
+    | '/admin/settings'
     | '/admin/supply-chain'
     | '/admin/users'
     | '/medicines/$id'
@@ -405,6 +417,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminPrescriptionsRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/settings': {
+      id: '/admin/settings'
+      path: '/settings'
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof AdminSettingsRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/supply-chain': {
       id: '/admin/supply-chain'
       path: '/supply-chain'
@@ -469,6 +488,7 @@ interface AdminRouteChildren {
   AdminCustomersRoute: typeof AdminCustomersRoute
   AdminOrdersRoute: typeof AdminOrdersRoute
   AdminPrescriptionsRoute: typeof AdminPrescriptionsRoute
+  AdminSettingsRoute: typeof AdminSettingsRoute
   AdminSupplyChainRoute: typeof AdminSupplyChainRoute
   AdminUsersRoute: typeof AdminUsersRoute
   AdminIndexRoute: typeof AdminIndexRoute
@@ -481,6 +501,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminCustomersRoute: AdminCustomersRoute,
   AdminOrdersRoute: AdminOrdersRoute,
   AdminPrescriptionsRoute: AdminPrescriptionsRoute,
+  AdminSettingsRoute: AdminSettingsRoute,
   AdminSupplyChainRoute: AdminSupplyChainRoute,
   AdminUsersRoute: AdminUsersRoute,
   AdminIndexRoute: AdminIndexRoute,
