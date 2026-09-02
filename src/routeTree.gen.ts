@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CartRouteImport } from './routes/cart'
+import { Route as PrescriptionsRouteImport } from './routes/prescriptions'
 import { Route as WishlistRouteImport } from './routes/wishlist'
 import { Route as MedicinesIndexRouteImport } from './routes/medicines.index'
 import { Route as MedicinesIdRouteImport } from './routes/medicines.$id'
@@ -23,6 +24,11 @@ const IndexRoute = IndexRouteImport.update({
 const CartRoute = CartRouteImport.update({
   id: '/cart',
   path: '/cart',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrescriptionsRoute = PrescriptionsRouteImport.update({
+  id: '/prescriptions',
+  path: '/prescriptions',
   getParentRoute: () => rootRouteImport,
 } as any)
 const WishlistRoute = WishlistRouteImport.update({
@@ -44,6 +50,7 @@ const MedicinesIdRoute = MedicinesIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/cart': typeof CartRoute
+  '/prescriptions': typeof PrescriptionsRoute
   '/wishlist': typeof WishlistRoute
   '/medicines/$id': typeof MedicinesIdRoute
   '/medicines/': typeof MedicinesIndexRoute
@@ -51,6 +58,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/cart': typeof CartRoute
+  '/prescriptions': typeof PrescriptionsRoute
   '/wishlist': typeof WishlistRoute
   '/medicines/$id': typeof MedicinesIdRoute
   '/medicines': typeof MedicinesIndexRoute
@@ -59,22 +67,42 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/cart': typeof CartRoute
+  '/prescriptions': typeof PrescriptionsRoute
   '/wishlist': typeof WishlistRoute
   '/medicines/$id': typeof MedicinesIdRoute
   '/medicines/': typeof MedicinesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/cart' | '/wishlist' | '/medicines/$id' | '/medicines/'
+  fullPaths:
+    | '/'
+    | '/cart'
+    | '/prescriptions'
+    | '/wishlist'
+    | '/medicines/$id'
+    | '/medicines/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/cart' | '/wishlist' | '/medicines/$id' | '/medicines'
+  to:
+    | '/'
+    | '/cart'
+    | '/prescriptions'
+    | '/wishlist'
+    | '/medicines/$id'
+    | '/medicines'
   id:
-    '__root__' | '/' | '/cart' | '/wishlist' | '/medicines/$id' | '/medicines/'
+    | '__root__'
+    | '/'
+    | '/cart'
+    | '/prescriptions'
+    | '/wishlist'
+    | '/medicines/$id'
+    | '/medicines/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CartRoute: typeof CartRoute
+  PrescriptionsRoute: typeof PrescriptionsRoute
   WishlistRoute: typeof WishlistRoute
   MedicinesIdRoute: typeof MedicinesIdRoute
   MedicinesIndexRoute: typeof MedicinesIndexRoute
@@ -94,6 +122,13 @@ declare module '@tanstack/react-router' {
       path: '/cart'
       fullPath: '/cart'
       preLoaderRoute: typeof CartRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/prescriptions': {
+      id: '/prescriptions'
+      path: '/prescriptions'
+      fullPath: '/prescriptions'
+      preLoaderRoute: typeof PrescriptionsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/wishlist': {
@@ -123,6 +158,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CartRoute: CartRoute,
+  PrescriptionsRoute: PrescriptionsRoute,
   WishlistRoute: WishlistRoute,
   MedicinesIdRoute: MedicinesIdRoute,
   MedicinesIndexRoute: MedicinesIndexRoute,
