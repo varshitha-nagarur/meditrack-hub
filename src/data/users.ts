@@ -135,3 +135,6 @@ export const roleDefinitions: RoleDefinition[] = [
     permissions: ["Users", "Inventory", "Orders", "Audit logs", "System settings"],
   },
 ];
+
+/** The signed-in admin used across the admin portal (mock session). */
+export const currentAdminUser: User = users.find((user) => user.role === "admin")!;

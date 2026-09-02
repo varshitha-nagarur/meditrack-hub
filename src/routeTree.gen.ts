@@ -10,33 +10,311 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as CartRouteImport } from './routes/cart'
+import { Route as CheckoutRouteImport } from './routes/checkout'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as PrescriptionsRouteImport } from './routes/prescriptions'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as SignupRouteImport } from './routes/signup'
+import { Route as WishlistRouteImport } from './routes/wishlist'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminAuditLogsRouteImport } from './routes/admin.audit-logs'
+import { Route as AdminCustomersRouteImport } from './routes/admin.customers'
+import { Route as AdminOrdersRouteImport } from './routes/admin.orders'
+import { Route as AdminPrescriptionsRouteImport } from './routes/admin.prescriptions'
+import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
+import { Route as AdminSupplyChainRouteImport } from './routes/admin.supply-chain'
+import { Route as AdminUsersRouteImport } from './routes/admin.users'
+import { Route as MedicinesIndexRouteImport } from './routes/medicines.index'
+import { Route as MedicinesIdRouteImport } from './routes/medicines.$id'
+import { Route as OrdersIndexRouteImport } from './routes/orders.index'
+import { Route as OrdersIdRouteImport } from './routes/orders.$id'
+import { Route as AdminInventoryIndexRouteImport } from './routes/admin.inventory.index'
+import { Route as AdminInventoryScanRouteImport } from './routes/admin.inventory.scan'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CartRoute = CartRouteImport.update({
+  id: '/cart',
+  path: '/cart',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CheckoutRoute = CheckoutRouteImport.update({
+  id: '/checkout',
+  path: '/checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrescriptionsRoute = PrescriptionsRouteImport.update({
+  id: '/prescriptions',
+  path: '/prescriptions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WishlistRoute = WishlistRouteImport.update({
+  id: '/wishlist',
+  path: '/wishlist',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminAuditLogsRoute = AdminAuditLogsRouteImport.update({
+  id: '/audit-logs',
+  path: '/audit-logs',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminCustomersRoute = AdminCustomersRouteImport.update({
+  id: '/customers',
+  path: '/customers',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminOrdersRoute = AdminOrdersRouteImport.update({
+  id: '/orders',
+  path: '/orders',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminPrescriptionsRoute = AdminPrescriptionsRouteImport.update({
+  id: '/prescriptions',
+  path: '/prescriptions',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminSettingsRoute = AdminSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminSupplyChainRoute = AdminSupplyChainRouteImport.update({
+  id: '/supply-chain',
+  path: '/supply-chain',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminUsersRoute = AdminUsersRouteImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => AdminRoute,
+} as any)
+const MedicinesIndexRoute = MedicinesIndexRouteImport.update({
+  id: '/medicines/',
+  path: '/medicines/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MedicinesIdRoute = MedicinesIdRouteImport.update({
+  id: '/medicines/$id',
+  path: '/medicines/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrdersIndexRoute = OrdersIndexRouteImport.update({
+  id: '/orders/',
+  path: '/orders/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrdersIdRoute = OrdersIdRouteImport.update({
+  id: '/orders/$id',
+  path: '/orders/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminInventoryIndexRoute = AdminInventoryIndexRouteImport.update({
+  id: '/inventory/',
+  path: '/inventory/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminInventoryScanRoute = AdminInventoryScanRouteImport.update({
+  id: '/inventory/scan',
+  path: '/inventory/scan',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/cart': typeof CartRoute
+  '/checkout': typeof CheckoutRoute
+  '/login': typeof LoginRoute
+  '/prescriptions': typeof PrescriptionsRoute
+  '/profile': typeof ProfileRoute
+  '/signup': typeof SignupRoute
+  '/wishlist': typeof WishlistRoute
+  '/admin/audit-logs': typeof AdminAuditLogsRoute
+  '/admin/customers': typeof AdminCustomersRoute
+  '/admin/orders': typeof AdminOrdersRoute
+  '/admin/prescriptions': typeof AdminPrescriptionsRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/supply-chain': typeof AdminSupplyChainRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/medicines/$id': typeof MedicinesIdRoute
+  '/orders/$id': typeof OrdersIdRoute
+  '/admin/': typeof AdminIndexRoute
+  '/medicines/': typeof MedicinesIndexRoute
+  '/orders/': typeof OrdersIndexRoute
+  '/admin/inventory/scan': typeof AdminInventoryScanRoute
+  '/admin/inventory/': typeof AdminInventoryIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/cart': typeof CartRoute
+  '/checkout': typeof CheckoutRoute
+  '/login': typeof LoginRoute
+  '/prescriptions': typeof PrescriptionsRoute
+  '/profile': typeof ProfileRoute
+  '/signup': typeof SignupRoute
+  '/wishlist': typeof WishlistRoute
+  '/admin/audit-logs': typeof AdminAuditLogsRoute
+  '/admin/customers': typeof AdminCustomersRoute
+  '/admin/orders': typeof AdminOrdersRoute
+  '/admin/prescriptions': typeof AdminPrescriptionsRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/supply-chain': typeof AdminSupplyChainRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/medicines/$id': typeof MedicinesIdRoute
+  '/orders/$id': typeof OrdersIdRoute
+  '/admin': typeof AdminIndexRoute
+  '/medicines': typeof MedicinesIndexRoute
+  '/orders': typeof OrdersIndexRoute
+  '/admin/inventory/scan': typeof AdminInventoryScanRoute
+  '/admin/inventory': typeof AdminInventoryIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/cart': typeof CartRoute
+  '/checkout': typeof CheckoutRoute
+  '/login': typeof LoginRoute
+  '/prescriptions': typeof PrescriptionsRoute
+  '/profile': typeof ProfileRoute
+  '/signup': typeof SignupRoute
+  '/wishlist': typeof WishlistRoute
+  '/admin/audit-logs': typeof AdminAuditLogsRoute
+  '/admin/customers': typeof AdminCustomersRoute
+  '/admin/orders': typeof AdminOrdersRoute
+  '/admin/prescriptions': typeof AdminPrescriptionsRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/supply-chain': typeof AdminSupplyChainRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/medicines/$id': typeof MedicinesIdRoute
+  '/orders/$id': typeof OrdersIdRoute
+  '/admin/': typeof AdminIndexRoute
+  '/medicines/': typeof MedicinesIndexRoute
+  '/orders/': typeof OrdersIndexRoute
+  '/admin/inventory/scan': typeof AdminInventoryScanRoute
+  '/admin/inventory/': typeof AdminInventoryIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/cart'
+    | '/checkout'
+    | '/login'
+    | '/prescriptions'
+    | '/profile'
+    | '/signup'
+    | '/wishlist'
+    | '/admin/audit-logs'
+    | '/admin/customers'
+    | '/admin/orders'
+    | '/admin/prescriptions'
+    | '/admin/settings'
+    | '/admin/supply-chain'
+    | '/admin/users'
+    | '/medicines/$id'
+    | '/orders/$id'
+    | '/admin/'
+    | '/medicines/'
+    | '/orders/'
+    | '/admin/inventory/scan'
+    | '/admin/inventory/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/cart'
+    | '/checkout'
+    | '/login'
+    | '/prescriptions'
+    | '/profile'
+    | '/signup'
+    | '/wishlist'
+    | '/admin/audit-logs'
+    | '/admin/customers'
+    | '/admin/orders'
+    | '/admin/prescriptions'
+    | '/admin/settings'
+    | '/admin/supply-chain'
+    | '/admin/users'
+    | '/medicines/$id'
+    | '/orders/$id'
+    | '/admin'
+    | '/medicines'
+    | '/orders'
+    | '/admin/inventory/scan'
+    | '/admin/inventory'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/cart'
+    | '/checkout'
+    | '/login'
+    | '/prescriptions'
+    | '/profile'
+    | '/signup'
+    | '/wishlist'
+    | '/admin/audit-logs'
+    | '/admin/customers'
+    | '/admin/orders'
+    | '/admin/prescriptions'
+    | '/admin/settings'
+    | '/admin/supply-chain'
+    | '/admin/users'
+    | '/medicines/$id'
+    | '/orders/$id'
+    | '/admin/'
+    | '/medicines/'
+    | '/orders/'
+    | '/admin/inventory/scan'
+    | '/admin/inventory/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRouteWithChildren
+  CartRoute: typeof CartRoute
+  CheckoutRoute: typeof CheckoutRoute
+  LoginRoute: typeof LoginRoute
+  PrescriptionsRoute: typeof PrescriptionsRoute
+  ProfileRoute: typeof ProfileRoute
+  SignupRoute: typeof SignupRoute
+  WishlistRoute: typeof WishlistRoute
+  MedicinesIdRoute: typeof MedicinesIdRoute
+  OrdersIdRoute: typeof OrdersIdRoute
+  MedicinesIndexRoute: typeof MedicinesIndexRoute
+  OrdersIndexRoute: typeof OrdersIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +326,205 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cart': {
+      id: '/cart'
+      path: '/cart'
+      fullPath: '/cart'
+      preLoaderRoute: typeof CartRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/checkout': {
+      id: '/checkout'
+      path: '/checkout'
+      fullPath: '/checkout'
+      preLoaderRoute: typeof CheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/prescriptions': {
+      id: '/prescriptions'
+      path: '/prescriptions'
+      fullPath: '/prescriptions'
+      preLoaderRoute: typeof PrescriptionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/wishlist': {
+      id: '/wishlist'
+      path: '/wishlist'
+      fullPath: '/wishlist'
+      preLoaderRoute: typeof WishlistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/audit-logs': {
+      id: '/admin/audit-logs'
+      path: '/audit-logs'
+      fullPath: '/admin/audit-logs'
+      preLoaderRoute: typeof AdminAuditLogsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/customers': {
+      id: '/admin/customers'
+      path: '/customers'
+      fullPath: '/admin/customers'
+      preLoaderRoute: typeof AdminCustomersRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/orders': {
+      id: '/admin/orders'
+      path: '/orders'
+      fullPath: '/admin/orders'
+      preLoaderRoute: typeof AdminOrdersRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/prescriptions': {
+      id: '/admin/prescriptions'
+      path: '/prescriptions'
+      fullPath: '/admin/prescriptions'
+      preLoaderRoute: typeof AdminPrescriptionsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/settings': {
+      id: '/admin/settings'
+      path: '/settings'
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof AdminSettingsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/supply-chain': {
+      id: '/admin/supply-chain'
+      path: '/supply-chain'
+      fullPath: '/admin/supply-chain'
+      preLoaderRoute: typeof AdminSupplyChainRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/users': {
+      id: '/admin/users'
+      path: '/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AdminUsersRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/medicines/': {
+      id: '/medicines/'
+      path: '/medicines'
+      fullPath: '/medicines/'
+      preLoaderRoute: typeof MedicinesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/medicines/$id': {
+      id: '/medicines/$id'
+      path: '/medicines/$id'
+      fullPath: '/medicines/$id'
+      preLoaderRoute: typeof MedicinesIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/orders/': {
+      id: '/orders/'
+      path: '/orders'
+      fullPath: '/orders/'
+      preLoaderRoute: typeof OrdersIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/orders/$id': {
+      id: '/orders/$id'
+      path: '/orders/$id'
+      fullPath: '/orders/$id'
+      preLoaderRoute: typeof OrdersIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/inventory/': {
+      id: '/admin/inventory/'
+      path: '/inventory'
+      fullPath: '/admin/inventory/'
+      preLoaderRoute: typeof AdminInventoryIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/inventory/scan': {
+      id: '/admin/inventory/scan'
+      path: '/inventory/scan'
+      fullPath: '/admin/inventory/scan'
+      preLoaderRoute: typeof AdminInventoryScanRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
 
+interface AdminRouteChildren {
+  AdminAuditLogsRoute: typeof AdminAuditLogsRoute
+  AdminCustomersRoute: typeof AdminCustomersRoute
+  AdminOrdersRoute: typeof AdminOrdersRoute
+  AdminPrescriptionsRoute: typeof AdminPrescriptionsRoute
+  AdminSettingsRoute: typeof AdminSettingsRoute
+  AdminSupplyChainRoute: typeof AdminSupplyChainRoute
+  AdminUsersRoute: typeof AdminUsersRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+  AdminInventoryScanRoute: typeof AdminInventoryScanRoute
+  AdminInventoryIndexRoute: typeof AdminInventoryIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminAuditLogsRoute: AdminAuditLogsRoute,
+  AdminCustomersRoute: AdminCustomersRoute,
+  AdminOrdersRoute: AdminOrdersRoute,
+  AdminPrescriptionsRoute: AdminPrescriptionsRoute,
+  AdminSettingsRoute: AdminSettingsRoute,
+  AdminSupplyChainRoute: AdminSupplyChainRoute,
+  AdminUsersRoute: AdminUsersRoute,
+  AdminIndexRoute: AdminIndexRoute,
+  AdminInventoryScanRoute: AdminInventoryScanRoute,
+  AdminInventoryIndexRoute: AdminInventoryIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRouteWithChildren,
+  CartRoute: CartRoute,
+  CheckoutRoute: CheckoutRoute,
+  LoginRoute: LoginRoute,
+  PrescriptionsRoute: PrescriptionsRoute,
+  ProfileRoute: ProfileRoute,
+  SignupRoute: SignupRoute,
+  WishlistRoute: WishlistRoute,
+  MedicinesIdRoute: MedicinesIdRoute,
+  OrdersIdRoute: OrdersIdRoute,
+  MedicinesIndexRoute: MedicinesIndexRoute,
+  OrdersIndexRoute: OrdersIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

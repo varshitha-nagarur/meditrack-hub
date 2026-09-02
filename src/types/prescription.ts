@@ -9,9 +9,9 @@ export interface Prescription {
   doctorName: string;
   medicines: string[];
   uploadedOn: string;
-  reviewedOn?: string;
-  reviewedBy?: string;
+  reviewedOn?: string | undefined;
+  reviewedBy?: string | undefined;
   status: PrescriptionStatus;
   fileName: string;
-  notes?: string;
+  notes?: string | undefined;
 }

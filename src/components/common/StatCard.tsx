@@ -6,7 +6,7 @@ interface StatCardProps {
   value: string | number;
   icon: LucideIcon;
   tone?: "primary" | "success" | "warning" | "danger" | "info";
-  hint?: string;
+  hint?: string | undefined;
 }
 
 const tones = {

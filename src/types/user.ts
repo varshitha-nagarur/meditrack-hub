@@ -6,7 +6,7 @@ export interface Address {
   id: string;
   label: string;
   line1: string;
-  line2?: string;
+  line2?: string | undefined;
   city: string;
   state: string;
   pincode: string;
@@ -23,7 +23,7 @@ export interface User {
   joinedOn: string;
   addresses: Address[];
   totalOrders: number;
-  lastOrderDate?: string;
+  lastOrderDate?: string | undefined;
 }
 
 export interface RoleDefinition {
