@@ -22,6 +22,7 @@ import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminCustomersRouteImport } from './routes/admin.customers'
 import { Route as AdminOrdersRouteImport } from './routes/admin.orders'
 import { Route as AdminPrescriptionsRouteImport } from './routes/admin.prescriptions'
+import { Route as AdminSupplyChainRouteImport } from './routes/admin.supply-chain'
 import { Route as MedicinesIndexRouteImport } from './routes/medicines.index'
 import { Route as MedicinesIdRouteImport } from './routes/medicines.$id'
 import { Route as OrdersIndexRouteImport } from './routes/orders.index'
@@ -94,6 +95,11 @@ const AdminPrescriptionsRoute = AdminPrescriptionsRouteImport.update({
   path: '/prescriptions',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminSupplyChainRoute = AdminSupplyChainRouteImport.update({
+  id: '/supply-chain',
+  path: '/supply-chain',
+  getParentRoute: () => AdminRoute,
+} as any)
 const MedicinesIndexRoute = MedicinesIndexRouteImport.update({
   id: '/medicines/',
   path: '/medicines/',
@@ -138,6 +144,7 @@ export interface FileRoutesByFullPath {
   '/admin/customers': typeof AdminCustomersRoute
   '/admin/orders': typeof AdminOrdersRoute
   '/admin/prescriptions': typeof AdminPrescriptionsRoute
+  '/admin/supply-chain': typeof AdminSupplyChainRoute
   '/medicines/$id': typeof MedicinesIdRoute
   '/orders/$id': typeof OrdersIdRoute
   '/admin/': typeof AdminIndexRoute
@@ -158,6 +165,7 @@ export interface FileRoutesByTo {
   '/admin/customers': typeof AdminCustomersRoute
   '/admin/orders': typeof AdminOrdersRoute
   '/admin/prescriptions': typeof AdminPrescriptionsRoute
+  '/admin/supply-chain': typeof AdminSupplyChainRoute
   '/medicines/$id': typeof MedicinesIdRoute
   '/orders/$id': typeof OrdersIdRoute
   '/admin': typeof AdminIndexRoute
@@ -180,6 +188,7 @@ export interface FileRoutesById {
   '/admin/customers': typeof AdminCustomersRoute
   '/admin/orders': typeof AdminOrdersRoute
   '/admin/prescriptions': typeof AdminPrescriptionsRoute
+  '/admin/supply-chain': typeof AdminSupplyChainRoute
   '/medicines/$id': typeof MedicinesIdRoute
   '/orders/$id': typeof OrdersIdRoute
   '/admin/': typeof AdminIndexRoute
@@ -203,6 +212,7 @@ export interface FileRouteTypes {
     | '/admin/customers'
     | '/admin/orders'
     | '/admin/prescriptions'
+    | '/admin/supply-chain'
     | '/medicines/$id'
     | '/orders/$id'
     | '/admin/'
@@ -223,6 +233,7 @@ export interface FileRouteTypes {
     | '/admin/customers'
     | '/admin/orders'
     | '/admin/prescriptions'
+    | '/admin/supply-chain'
     | '/medicines/$id'
     | '/orders/$id'
     | '/admin'
@@ -244,6 +255,7 @@ export interface FileRouteTypes {
     | '/admin/customers'
     | '/admin/orders'
     | '/admin/prescriptions'
+    | '/admin/supply-chain'
     | '/medicines/$id'
     | '/orders/$id'
     | '/admin/'
@@ -362,6 +374,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminPrescriptionsRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/supply-chain': {
+      id: '/admin/supply-chain'
+      path: '/supply-chain'
+      fullPath: '/admin/supply-chain'
+      preLoaderRoute: typeof AdminSupplyChainRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/medicines/': {
       id: '/medicines/'
       path: '/medicines'
@@ -411,6 +430,7 @@ interface AdminRouteChildren {
   AdminCustomersRoute: typeof AdminCustomersRoute
   AdminOrdersRoute: typeof AdminOrdersRoute
   AdminPrescriptionsRoute: typeof AdminPrescriptionsRoute
+  AdminSupplyChainRoute: typeof AdminSupplyChainRoute
   AdminIndexRoute: typeof AdminIndexRoute
   AdminInventoryScanRoute: typeof AdminInventoryScanRoute
   AdminInventoryIndexRoute: typeof AdminInventoryIndexRoute
@@ -420,6 +440,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminCustomersRoute: AdminCustomersRoute,
   AdminOrdersRoute: AdminOrdersRoute,
   AdminPrescriptionsRoute: AdminPrescriptionsRoute,
+  AdminSupplyChainRoute: AdminSupplyChainRoute,
   AdminIndexRoute: AdminIndexRoute,
   AdminInventoryScanRoute: AdminInventoryScanRoute,
   AdminInventoryIndexRoute: AdminInventoryIndexRoute,
