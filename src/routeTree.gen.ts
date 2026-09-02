@@ -19,6 +19,7 @@ import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as SignupRouteImport } from './routes/signup'
 import { Route as WishlistRouteImport } from './routes/wishlist'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminOrdersRouteImport } from './routes/admin.orders'
 import { Route as MedicinesIndexRouteImport } from './routes/medicines.index'
 import { Route as MedicinesIdRouteImport } from './routes/medicines.$id'
 import { Route as OrdersIndexRouteImport } from './routes/orders.index'
@@ -76,6 +77,11 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminOrdersRoute = AdminOrdersRouteImport.update({
+  id: '/orders',
+  path: '/orders',
+  getParentRoute: () => AdminRoute,
+} as any)
 const MedicinesIndexRoute = MedicinesIndexRouteImport.update({
   id: '/medicines/',
   path: '/medicines/',
@@ -117,6 +123,7 @@ export interface FileRoutesByFullPath {
   '/profile': typeof ProfileRoute
   '/signup': typeof SignupRoute
   '/wishlist': typeof WishlistRoute
+  '/admin/orders': typeof AdminOrdersRoute
   '/medicines/$id': typeof MedicinesIdRoute
   '/orders/$id': typeof OrdersIdRoute
   '/admin/': typeof AdminIndexRoute
@@ -134,6 +141,7 @@ export interface FileRoutesByTo {
   '/profile': typeof ProfileRoute
   '/signup': typeof SignupRoute
   '/wishlist': typeof WishlistRoute
+  '/admin/orders': typeof AdminOrdersRoute
   '/medicines/$id': typeof MedicinesIdRoute
   '/orders/$id': typeof OrdersIdRoute
   '/admin': typeof AdminIndexRoute
@@ -153,6 +161,7 @@ export interface FileRoutesById {
   '/profile': typeof ProfileRoute
   '/signup': typeof SignupRoute
   '/wishlist': typeof WishlistRoute
+  '/admin/orders': typeof AdminOrdersRoute
   '/medicines/$id': typeof MedicinesIdRoute
   '/orders/$id': typeof OrdersIdRoute
   '/admin/': typeof AdminIndexRoute
@@ -173,6 +182,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/signup'
     | '/wishlist'
+    | '/admin/orders'
     | '/medicines/$id'
     | '/orders/$id'
     | '/admin/'
@@ -190,6 +200,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/signup'
     | '/wishlist'
+    | '/admin/orders'
     | '/medicines/$id'
     | '/orders/$id'
     | '/admin'
@@ -208,6 +219,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/signup'
     | '/wishlist'
+    | '/admin/orders'
     | '/medicines/$id'
     | '/orders/$id'
     | '/admin/'
@@ -305,6 +317,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/orders': {
+      id: '/admin/orders'
+      path: '/orders'
+      fullPath: '/admin/orders'
+      preLoaderRoute: typeof AdminOrdersRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/medicines/': {
       id: '/medicines/'
       path: '/medicines'
@@ -351,12 +370,14 @@ declare module '@tanstack/react-router' {
 }
 
 interface AdminRouteChildren {
+  AdminOrdersRoute: typeof AdminOrdersRoute
   AdminIndexRoute: typeof AdminIndexRoute
   AdminInventoryScanRoute: typeof AdminInventoryScanRoute
   AdminInventoryIndexRoute: typeof AdminInventoryIndexRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
+  AdminOrdersRoute: AdminOrdersRoute,
   AdminIndexRoute: AdminIndexRoute,
   AdminInventoryScanRoute: AdminInventoryScanRoute,
   AdminInventoryIndexRoute: AdminInventoryIndexRoute,
