@@ -1,8 +1,9 @@
 import { CheckCircle2, CircleSlash, TriangleAlert } from "lucide-react";
+import type { ReactNode } from "react";
 import { StatusBadge, type BadgeTone } from "./StatusBadge";
 import type { StockStatus } from "@/types/medicine";
 
-const config: Record<StockStatus, { label: string; tone: BadgeTone; icon: JSX.Element }> = {
+const config: Record<StockStatus, { label: string; tone: BadgeTone; icon: ReactNode }> = {
   "in-stock": { label: "In Stock", tone: "success", icon: <CheckCircle2 className="h-3.5 w-3.5" /> },
   "low-stock": {
     label: "Low Stock",
