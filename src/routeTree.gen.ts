@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CartRouteImport } from './routes/cart'
+import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as PrescriptionsRouteImport } from './routes/prescriptions'
 import { Route as WishlistRouteImport } from './routes/wishlist'
 import { Route as MedicinesIndexRouteImport } from './routes/medicines.index'
@@ -24,6 +25,11 @@ const IndexRoute = IndexRouteImport.update({
 const CartRoute = CartRouteImport.update({
   id: '/cart',
   path: '/cart',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CheckoutRoute = CheckoutRouteImport.update({
+  id: '/checkout',
+  path: '/checkout',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrescriptionsRoute = PrescriptionsRouteImport.update({
@@ -50,6 +56,7 @@ const MedicinesIdRoute = MedicinesIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/cart': typeof CartRoute
+  '/checkout': typeof CheckoutRoute
   '/prescriptions': typeof PrescriptionsRoute
   '/wishlist': typeof WishlistRoute
   '/medicines/$id': typeof MedicinesIdRoute
@@ -58,6 +65,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/cart': typeof CartRoute
+  '/checkout': typeof CheckoutRoute
   '/prescriptions': typeof PrescriptionsRoute
   '/wishlist': typeof WishlistRoute
   '/medicines/$id': typeof MedicinesIdRoute
@@ -67,6 +75,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/cart': typeof CartRoute
+  '/checkout': typeof CheckoutRoute
   '/prescriptions': typeof PrescriptionsRoute
   '/wishlist': typeof WishlistRoute
   '/medicines/$id': typeof MedicinesIdRoute
@@ -77,6 +86,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/cart'
+    | '/checkout'
     | '/prescriptions'
     | '/wishlist'
     | '/medicines/$id'
@@ -85,6 +95,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/cart'
+    | '/checkout'
     | '/prescriptions'
     | '/wishlist'
     | '/medicines/$id'
@@ -93,6 +104,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/cart'
+    | '/checkout'
     | '/prescriptions'
     | '/wishlist'
     | '/medicines/$id'
@@ -102,6 +114,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CartRoute: typeof CartRoute
+  CheckoutRoute: typeof CheckoutRoute
   PrescriptionsRoute: typeof PrescriptionsRoute
   WishlistRoute: typeof WishlistRoute
   MedicinesIdRoute: typeof MedicinesIdRoute
@@ -122,6 +135,13 @@ declare module '@tanstack/react-router' {
       path: '/cart'
       fullPath: '/cart'
       preLoaderRoute: typeof CartRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/checkout': {
+      id: '/checkout'
+      path: '/checkout'
+      fullPath: '/checkout'
+      preLoaderRoute: typeof CheckoutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/prescriptions': {
@@ -158,6 +178,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CartRoute: CartRoute,
+  CheckoutRoute: CheckoutRoute,
   PrescriptionsRoute: PrescriptionsRoute,
   WishlistRoute: WishlistRoute,
   MedicinesIdRoute: MedicinesIdRoute,
