@@ -4,16 +4,17 @@ import { Button } from "@/components/common/Button";
 import { ExpiryBadge } from "@/components/common/ExpiryBadge";
 import { StatusBadge } from "@/components/common/StatusBadge";
 import { StockBadge } from "@/components/common/StockBadge";
+import { useStore } from "@/hooks/useStore";
 import type { Medicine } from "@/types/medicine";
 import { formatINR } from "@/utils/format";
+import { cn } from "@/lib/utils";
 
-interface MedicineCardProps {
-  medicine: Medicine;
-  onAddToCart?: (medicine: Medicine) => void;
-  onToggleWishlist?: (medicine: Medicine) => void;
-}
+/** Catalogue tile used on the home page, catalogue and related sections. */
+export function MedicineCard({ medicine }: { medicine: Medicine }) {
+  const { addToCart, toggleWishlist, isWishlisted } = useStore();
+  const outOfStock = medicine.stockStatus === "out-of-stock";
+  const saved = isWishlisted(medicine.id);
 
-export function MedicineCard({ medicine, onAddToCart, onToggleWishlist }: MedicineCardProps) {
   return (
     <article className="group flex flex-col overflow-hidden rounded-xl border border-border bg-card shadow-card transition-shadow hover:shadow-elevated">
       <Link
@@ -62,24 +63,34 @@ export function MedicineCard({ medicine, onAddToCart, onToggleWishlist }: Medici
         </div>
 
         <div className="flex gap-2">
+          {/* TODO: Connect cart service to backend API */}
           <Button
             size="sm"
             className="flex-1"
-            disabled={medicine.stockStatus === "out-of-stock"}
-            onClick={() => onAddToCart?.(medicine)}
+            disabled={outOfStock}
+            onClick={() => addToCart(medicine.id)}
           >
             <ShoppingCart className="h-4 w-4" />
-            Add to Cart
+            {outOfStock ? "Unavailable" : "Add to Cart"}
           </Button>
           <Button
             size="sm"
             variant="outline"
-            aria-label="Add to wishlist"
-            onClick={() => onToggleWishlist?.(medicine)}
+            aria-label={saved ? "Remove from wishlist" : "Add to wishlist"}
+            aria-pressed={saved}
+            onClick={() => toggleWishlist(medicine.id)}
           >
-            <Heart className="h-4 w-4" />
+            <Heart className={cn("h-4 w-4", saved && "fill-destructive text-destructive")} />
           </Button>
         </div>
+
+        <Link
+          to="/medicines/$id"
+          params={{ id: medicine.id }}
+          className="text-center text-xs font-medium text-primary hover:underline"
+        >
+          View Details
+        </Link>
       </div>
     </article>
   );
