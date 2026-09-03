@@ -1,11 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ShoppingCart, Trash2 } from "lucide-react";
+import { Heart, ShoppingCart, Trash2 } from "lucide-react";
 import { Button } from "@/components/common/Button";
 import { DataTable, type Column } from "@/components/common/DataTable";
+import { EmptyState } from "@/components/common/EmptyState";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { StockBadge } from "@/components/common/StockBadge";
 import { getMedicineById } from "@/data/medicines";
-import { wishlistMedicineIds } from "@/data/orders";
+import { useStore } from "@/hooks/useStore";
 import { CustomerLayout } from "@/layouts/CustomerLayout";
 import type { Medicine } from "@/types/medicine";
 import { formatINR } from "@/utils/format";
@@ -26,7 +27,9 @@ export const Route = createFileRoute("/wishlist")({
 });
 
 function WishlistPage() {
-  const items = wishlistMedicineIds
+  const { wishlist, moveToCart, removeFromWishlist } = useStore();
+
+  const items = wishlist
     .map((id) => getMedicineById(id))
     .filter((item): item is Medicine => Boolean(item));
 
@@ -69,11 +72,20 @@ function WishlistPage() {
       render: (medicine) => (
         <div className="flex gap-2">
           {/* TODO: Connect wishlist + cart services to backend API */}
-          <Button size="sm" disabled={medicine.stockStatus === "out-of-stock"}>
+          <Button
+            size="sm"
+            disabled={medicine.stockStatus === "out-of-stock"}
+            onClick={() => moveToCart(medicine.id)}
+          >
             <ShoppingCart className="h-4 w-4" />
             Move to Cart
           </Button>
-          <Button size="sm" variant="outline" aria-label="Remove from wishlist">
+          <Button
+            size="sm"
+            variant="outline"
+            aria-label={`Remove ${medicine.name} from wishlist`}
+            onClick={() => removeFromWishlist(medicine.id)}
+          >
             <Trash2 className="h-4 w-4" />
           </Button>
         </div>
@@ -85,13 +97,20 @@ function WishlistPage() {
     <CustomerLayout>
       <div className="container-page py-10">
         <SectionHeading title="Wishlist" description="Medicines you saved for later." />
-        <DataTable
-          columns={columns}
-          rows={items}
-          rowKey={(medicine) => medicine.id}
-          emptyTitle="Nothing saved yet"
-          emptyDescription="Tap the heart icon on any medicine to save it here."
-        />
+        {items.length === 0 ? (
+          <EmptyState
+            icon={<Heart className="h-6 w-6" />}
+            title="Nothing saved yet"
+            description="Tap the heart icon on any medicine to save it here."
+            action={
+              <Link to="/medicines">
+                <Button>Shop Medicines</Button>
+              </Link>
+            }
+          />
+        ) : (
+          <DataTable columns={columns} rows={items} rowKey={(medicine) => medicine.id} />
+        )}
       </div>
     </CustomerLayout>
   );

@@ -4,16 +4,23 @@ import { Button } from "@/components/common/Button";
 import { ExpiryBadge } from "@/components/common/ExpiryBadge";
 import { StatusBadge } from "@/components/common/StatusBadge";
 import { StockBadge } from "@/components/common/StockBadge";
+import { useStore } from "@/hooks/useStore";
+import { cn } from "@/lib/utils";
 import type { Medicine } from "@/types/medicine";
 import { formatINR } from "@/utils/format";
 
 interface MedicineCardProps {
   medicine: Medicine;
+  /** Optional overrides; defaults to the local cart/wishlist store. */
   onAddToCart?: (medicine: Medicine) => void;
   onToggleWishlist?: (medicine: Medicine) => void;
 }
 
 export function MedicineCard({ medicine, onAddToCart, onToggleWishlist }: MedicineCardProps) {
+  const { addToCart, toggleWishlist, isWishlisted } = useStore();
+  const wishlisted = isWishlisted(medicine.id);
+  const outOfStock = medicine.stockStatus === "out-of-stock";
+
   return (
     <article className="group flex flex-col overflow-hidden rounded-xl border border-border bg-card shadow-card transition-shadow hover:shadow-elevated">
       <Link
@@ -65,19 +72,24 @@ export function MedicineCard({ medicine, onAddToCart, onToggleWishlist }: Medici
           <Button
             size="sm"
             className="flex-1"
-            disabled={medicine.stockStatus === "out-of-stock"}
-            onClick={() => onAddToCart?.(medicine)}
+            disabled={outOfStock}
+            onClick={() =>
+              onAddToCart ? onAddToCart(medicine) : addToCart(medicine.id)
+            }
           >
             <ShoppingCart className="h-4 w-4" />
-            Add to Cart
+            {outOfStock ? "Out of Stock" : "Add to Cart"}
           </Button>
           <Button
             size="sm"
             variant="outline"
-            aria-label="Add to wishlist"
-            onClick={() => onToggleWishlist?.(medicine)}
+            aria-label={wishlisted ? "Remove from wishlist" : "Add to wishlist"}
+            aria-pressed={wishlisted}
+            onClick={() =>
+              onToggleWishlist ? onToggleWishlist(medicine) : toggleWishlist(medicine.id)
+            }
           >
-            <Heart className="h-4 w-4" />
+            <Heart className={cn("h-4 w-4", wishlisted && "fill-danger text-danger")} />
           </Button>
         </div>
       </div>

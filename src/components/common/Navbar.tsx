@@ -1,17 +1,8 @@
-import { Link } from "@tanstack/react-router";
-import {
-  Heart,
-  Menu,
-  Package,
-  Pill,
-  ShoppingCart,
-  Stethoscope,
-  User,
-  X,
-} from "lucide-react";
-import { useState } from "react";
+import { Link, useNavigate } from "@tanstack/react-router";
+import { Heart, Menu, Package, Pill, ShoppingCart, Stethoscope, User, X } from "lucide-react";
+import { useState, type ReactNode } from "react";
 import { SearchBar } from "./SearchBar";
-import { cartItems, wishlistMedicineIds } from "@/data/orders";
+import { useStore } from "@/hooks/useStore";
 
 const navLinks = [
   { to: "/medicines", label: "Medicines", icon: Pill },
@@ -19,10 +10,19 @@ const navLinks = [
   { to: "/orders", label: "Orders", icon: Package },
 ] as const;
 
-/** Customer store header. Counts come from mock data for now. */
+/** Customer store header. Counts come from the local cart/wishlist store. */
 export function Navbar() {
   const [query, setQuery] = useState("");
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { cartCount, wishlistCount } = useStore();
+  const navigate = useNavigate();
+
+  function submitSearch(event: React.FormEvent) {
+    event.preventDefault();
+    setMobileOpen(false);
+    // TODO: Replace client-side filtering with a backend catalogue search API
+    void navigate({ to: "/medicines", search: { q: query.trim() || undefined } });
+  }
 
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-card/95 backdrop-blur">
@@ -34,10 +34,9 @@ export function Navbar() {
           <span className="text-lg font-semibold tracking-tight text-foreground">MediTrack</span>
         </Link>
 
-        <div className="hidden flex-1 md:block">
-          {/* TODO: Wire search to catalogue query params / backend search */}
+        <form onSubmit={submitSearch} className="hidden flex-1 md:block" role="search">
           <SearchBar value={query} onChange={setQuery} />
-        </div>
+        </form>
 
         <nav className="hidden items-center gap-1 lg:flex">
           {navLinks.map((link) => (
@@ -53,10 +52,10 @@ export function Navbar() {
         </nav>
 
         <div className="ml-auto flex items-center gap-1">
-          <IconLink to="/wishlist" label="Wishlist" count={wishlistMedicineIds.length}>
+          <IconLink to="/wishlist" label="Wishlist" count={wishlistCount}>
             <Heart className="h-5 w-5" />
           </IconLink>
-          <IconLink to="/cart" label="Cart" count={cartItems.length}>
+          <IconLink to="/cart" label="Cart" count={cartCount}>
             <ShoppingCart className="h-5 w-5" />
           </IconLink>
           <IconLink to="/profile" label="Profile">
@@ -66,6 +65,7 @@ export function Navbar() {
             className="rounded-lg p-2 text-muted-foreground hover:bg-muted lg:hidden"
             onClick={() => setMobileOpen((open) => !open)}
             aria-label="Toggle navigation"
+            aria-expanded={mobileOpen}
           >
             {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -74,7 +74,9 @@ export function Navbar() {
 
       {mobileOpen ? (
         <div className="border-t border-border bg-card px-4 py-3 lg:hidden">
-          <SearchBar value={query} onChange={setQuery} className="mb-3 md:hidden" />
+          <form onSubmit={submitSearch} className="mb-3 md:hidden" role="search">
+            <SearchBar value={query} onChange={setQuery} />
+          </form>
           <div className="grid gap-1">
             {navLinks.map((link) => (
               <Link
@@ -82,11 +84,20 @@ export function Navbar() {
                 to={link.to}
                 onClick={() => setMobileOpen(false)}
                 className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-muted"
+                activeProps={{ className: "bg-primary-soft text-primary" }}
               >
                 <link.icon className="h-4 w-4" />
                 {link.label}
               </Link>
             ))}
+            <Link
+              to="/profile"
+              onClick={() => setMobileOpen(false)}
+              className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-muted"
+            >
+              <User className="h-4 w-4" />
+              Profile
+            </Link>
           </div>
         </div>
       ) : null}
@@ -100,16 +111,17 @@ function IconLink({
   count,
   children,
 }: {
-  to: string;
+  to: "/wishlist" | "/cart" | "/profile";
   label: string;
   count?: number;
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   return (
     <Link
       to={to}
       aria-label={label}
       className="relative rounded-lg p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+      activeProps={{ className: "bg-primary-soft text-primary" }}
     >
       {children}
       {count && count > 0 ? (

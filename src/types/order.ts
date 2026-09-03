@@ -25,6 +25,13 @@ export interface CartItem extends OrderItem {
   stockStatus: "in-stock" | "low-stock" | "out-of-stock";
 }
 
+/** Minimal cart entry held in local UI state. */
+export interface CartLine {
+  medicineId: string;
+  quantity: number;
+}
+
+
 export interface OrderTimelineStep {
   key: OrderStatus | "payment-confirmed";
   label: string;
