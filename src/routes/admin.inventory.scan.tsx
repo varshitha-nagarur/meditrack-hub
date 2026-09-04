@@ -28,7 +28,7 @@ function ScanPage() {
   return (
     <div className="space-y-6">
       <SectionHeading
-            as="h1"
+        as="h1"
         title="Scan Batch"
         description="QR / RFID scanning is mocked — no hardware is connected."
       />
@@ -36,7 +36,9 @@ function ScanPage() {
       {/* TODO: Integrate QR/RFID scanner */}
       <div className="flex flex-col items-center rounded-xl border border-dashed border-border bg-card px-6 py-12 text-center shadow-card">
         <ScanLine className="h-8 w-8 text-primary" />
-        <p className="mt-3 text-sm font-medium text-foreground">Point the scanner at a batch label</p>
+        <p className="mt-3 text-sm font-medium text-foreground">
+          Point the scanner at a batch label
+        </p>
         <p className="text-xs text-muted-foreground">Supports QR codes and RFID tags.</p>
         <Button className="mt-5" onClick={() => setScanned(true)}>
           <QrCode className="h-4 w-4" />

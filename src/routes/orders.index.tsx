@@ -28,8 +28,7 @@ function OrdersPage() {
   return (
     <CustomerLayout>
       <div className="container-page py-10">
-        <SectionHeading
-            as="h1" title="Orders" description="Mock order history for this account." />
+        <SectionHeading as="h1" title="Orders" description="Mock order history for this account." />
         {orders.length === 0 ? (
           <EmptyState
             title="No orders yet"

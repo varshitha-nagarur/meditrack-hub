@@ -4,11 +4,7 @@ import { OrderTimeline } from "@/components/customer/OrderTimeline";
 import { getOrderById } from "@/data/orders";
 import { CustomerLayout } from "@/layouts/CustomerLayout";
 import { formatDate, formatINR, titleCase } from "@/utils/format";
-import {
-  orderStatusTone,
-  paymentStatusTone,
-  prescriptionStatusTone,
-} from "@/utils/status-tones";
+import { orderStatusTone, paymentStatusTone, prescriptionStatusTone } from "@/utils/status-tones";
 
 export const Route = createFileRoute("/orders/$id")({
   loader: ({ params }) => {
@@ -53,9 +49,7 @@ function OrderDetailsPage() {
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
             <h1 className="text-2xl font-semibold text-foreground">{order.id}</h1>
-            <p className="text-sm text-muted-foreground">
-              Placed on {formatDate(order.placedOn)}
-            </p>
+            <p className="text-sm text-muted-foreground">Placed on {formatDate(order.placedOn)}</p>
           </div>
           <div className="flex flex-wrap gap-2">
             <StatusBadge tone={paymentStatusTone[order.paymentStatus]}>
@@ -115,9 +109,15 @@ function OrderDetailsPage() {
               </dl>
             </Panel>
             <Panel title="Prescription Status">
-              <StatusBadge tone={prescriptionStatusTone[
-                order.prescriptionStatus === "not-required" ? "verified" : order.prescriptionStatus
-              ]}>
+              <StatusBadge
+                tone={
+                  prescriptionStatusTone[
+                    order.prescriptionStatus === "not-required"
+                      ? "verified"
+                      : order.prescriptionStatus
+                  ]
+                }
+              >
                 {titleCase(order.prescriptionStatus)}
               </StatusBadge>
             </Panel>
@@ -140,7 +140,9 @@ function Panel({ title, children }: { title: string; children: React.ReactNode }
 function Row({ label, value, strong }: { label: string; value: string; strong?: boolean }) {
   return (
     <div className="flex items-center justify-between">
-      <dt className={strong ? "font-semibold text-foreground" : "text-muted-foreground"}>{label}</dt>
+      <dt className={strong ? "font-semibold text-foreground" : "text-muted-foreground"}>
+        {label}
+      </dt>
       <dd className={strong ? "font-semibold text-foreground" : "text-foreground"}>{value}</dd>
     </div>
   );

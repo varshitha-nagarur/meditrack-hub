@@ -37,7 +37,7 @@ function ProfilePage() {
     <CustomerLayout>
       <div className="container-page space-y-10 py-10">
         <SectionHeading
-            as="h1"
+          as="h1"
           title={currentCustomer.name}
           description={`${currentCustomer.email} · Member since ${formatDate(currentCustomer.joinedOn)}`}
         />

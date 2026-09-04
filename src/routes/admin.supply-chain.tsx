@@ -57,7 +57,7 @@ function SupplyChainPage() {
   return (
     <div className="space-y-6">
       <SectionHeading
-            as="h1"
+        as="h1"
         title="Supply Chain"
         description="Replenishment requests are mock records."
         action={<Button variant="outline">New Request</Button>}

@@ -41,7 +41,7 @@ function UsersRolesPage() {
   return (
     <div className="space-y-6">
       <SectionHeading
-            as="h1"
+        as="h1"
         title="Users & Roles"
         description="Role-based visibility is UI only — no authorization is enforced."
       />

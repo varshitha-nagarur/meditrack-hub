@@ -66,7 +66,7 @@ function AuditLogsPage() {
   return (
     <div className="space-y-6">
       <SectionHeading
-            as="h1"
+        as="h1"
         title="Audit Logs"
         description="Sensitive actions are recorded for accountability."
       />

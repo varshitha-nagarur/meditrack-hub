@@ -113,7 +113,7 @@ function CataloguePage() {
     <CustomerLayout>
       <div className="container-page py-10">
         <SectionHeading
-            as="h1"
+          as="h1"
           title="All Medicines"
           description="Informational listing only — this is not medical advice."
         />
