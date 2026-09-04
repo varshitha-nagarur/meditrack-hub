@@ -83,7 +83,7 @@ function CataloguePage() {
     setRx("all");
     setManufacturer("all");
     setSort("relevance");
-    void navigate({ search: {} });
+    void navigate({ search: () => ({}) });
   }
 
   const results = useMemo(() => {
