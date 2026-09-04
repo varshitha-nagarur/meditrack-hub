@@ -49,6 +49,7 @@ function CartPage() {
     <CustomerLayout>
       <div className="container-page py-10">
         <SectionHeading
+            as="h1"
           title="Cart"
           description={`${totals.itemCount} item${totals.itemCount === 1 ? "" : "s"} in your cart.`}
         />

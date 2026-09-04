@@ -34,7 +34,8 @@ const charts = ["Orders", "Inventory", "Low Stock", "Expiry"] as const;
 function AdminDashboard() {
   return (
     <div className="space-y-8">
-      <SectionHeading title="Dashboard" description="All values are mock data." />
+      <SectionHeading
+            as="h1" title="Dashboard" description="All values are mock data." />
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
         <StatCard label="Total Medicines" value={dashboardStats.totalMedicines} icon={Package} />

@@ -103,7 +103,8 @@ function AdminOrdersPage() {
 
   return (
     <div className="space-y-6">
-      <SectionHeading title="Orders" description="Order records come from mock data." />
+      <SectionHeading
+            as="h1" title="Orders" description="Order records come from mock data." />
 
       <div className="flex flex-wrap gap-2">
         {filters.map((item) => (

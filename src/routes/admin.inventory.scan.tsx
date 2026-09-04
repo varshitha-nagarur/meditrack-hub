@@ -28,6 +28,7 @@ function ScanPage() {
   return (
     <div className="space-y-6">
       <SectionHeading
+            as="h1"
         title="Scan Batch"
         description="QR / RFID scanning is mocked — no hardware is connected."
       />

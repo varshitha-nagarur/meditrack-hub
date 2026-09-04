@@ -50,6 +50,7 @@ function PrescriptionsPage() {
 
         <section>
           <SectionHeading
+            as="h1"
             title="Prescription History"
             description="Statuses are mock values for now."
           />

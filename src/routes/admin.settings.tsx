@@ -22,7 +22,8 @@ export const Route = createFileRoute("/admin/settings")({
 function SettingsPage() {
   return (
     <div className="space-y-6">
-      <SectionHeading title="Settings" description="Values are placeholders — nothing is saved." />
+      <SectionHeading
+            as="h1" title="Settings" description="Values are placeholders — nothing is saved." />
 
       <section className="rounded-xl border border-border bg-card p-5 shadow-card">
         <h2 className="mb-4 text-sm font-semibold text-foreground">Pharmacy Profile</h2>

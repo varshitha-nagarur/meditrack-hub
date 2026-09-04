@@ -81,6 +81,7 @@ function AdminPrescriptionsPage() {
   return (
     <div className="space-y-6">
       <SectionHeading
+            as="h1"
         title="Prescriptions"
         description="Verification actions are UI only for now."
       />

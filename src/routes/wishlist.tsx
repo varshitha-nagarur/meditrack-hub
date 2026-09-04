@@ -96,7 +96,8 @@ function WishlistPage() {
   return (
     <CustomerLayout>
       <div className="container-page py-10">
-        <SectionHeading title="Wishlist" description="Medicines you saved for later." />
+        <SectionHeading
+            as="h1" title="Wishlist" description="Medicines you saved for later." />
         {items.length === 0 ? (
           <EmptyState
             icon={<Heart className="h-6 w-6" />}
