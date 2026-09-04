@@ -56,7 +56,7 @@ const sortOptions = [
 
 function CataloguePage() {
   const { category: initialCategory, q: initialQuery } = Route.useSearch();
-  const navigate = useNavigate({ from: "/medicines" });
+  const navigate = useNavigate({ from: "/medicines/" });
 
   const [query, setQuery] = useState(initialQuery ?? "");
   const [category, setCategory] = useState<string>(initialCategory ?? "all");
