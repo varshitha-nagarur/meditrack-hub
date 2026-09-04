@@ -6,11 +6,7 @@ import { ExpiryBadge } from "@/components/common/ExpiryBadge";
 import { StatusBadge } from "@/components/common/StatusBadge";
 import { StockBadge } from "@/components/common/StockBadge";
 import { MedicineCard } from "@/components/customer/MedicineCard";
-import {
-  frequentlyBoughtTogether,
-  getMedicineById,
-  medicines,
-} from "@/data/medicines";
+import { frequentlyBoughtTogether, getMedicineById, medicines } from "@/data/medicines";
 import { CustomerLayout } from "@/layouts/CustomerLayout";
 import { formatDate, formatINR } from "@/utils/format";
 import { cn } from "@/lib/utils";
@@ -24,7 +20,10 @@ export const Route = createFileRoute("/medicines/$id")({
   head: ({ loaderData }) => {
     if (!loaderData) {
       return {
-        meta: [{ title: "Medicine unavailable — MediTrack" }, { name: "robots", content: "noindex" }],
+        meta: [
+          { title: "Medicine unavailable — MediTrack" },
+          { name: "robots", content: "noindex" },
+        ],
       };
     }
     const title = `${loaderData.medicine.name} — MediTrack`;

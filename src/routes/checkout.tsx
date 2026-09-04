@@ -53,7 +53,7 @@ function CheckoutPage() {
   return (
     <CustomerLayout>
       <div className="container-page py-10">
-        <SectionHeading title="Checkout" description="UI only — no payment is processed." />
+        <SectionHeading as="h1" title="Checkout" description="UI only — no payment is processed." />
 
         <ol className="mb-8 grid gap-2 sm:grid-cols-4">
           {steps.map((label, index) => (

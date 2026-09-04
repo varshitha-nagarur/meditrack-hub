@@ -62,7 +62,7 @@ function AdminCustomersPage() {
 
   return (
     <div className="space-y-6">
-      <SectionHeading title="Customers" description="CRM records come from mock data." />
+      <SectionHeading as="h1" title="Customers" description="CRM records come from mock data." />
       {/* TODO: Replace mock data with backend API */}
       <DataTable columns={columns} rows={customers} rowKey={(user) => user.id} />
 

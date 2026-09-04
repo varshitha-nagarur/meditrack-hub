@@ -42,6 +42,7 @@ function AdminInventoryPage() {
   return (
     <div className="space-y-6">
       <SectionHeading
+        as="h1"
         title="Inventory"
         description={`Reorder at ≤ ${DEFAULT_REORDER_LEVEL} units or expiry risk · replenish to ${DEFAULT_MAXIMUM_LEVEL} units.`}
         action={

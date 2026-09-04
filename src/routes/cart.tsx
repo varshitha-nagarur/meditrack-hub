@@ -49,6 +49,7 @@ function CartPage() {
     <CustomerLayout>
       <div className="container-page py-10">
         <SectionHeading
+          as="h1"
           title="Cart"
           description={`${totals.itemCount} item${totals.itemCount === 1 ? "" : "s"} in your cart.`}
         />
@@ -198,7 +199,9 @@ function CartPage() {
 function Row({ label, value, strong }: { label: string; value: string; strong?: boolean }) {
   return (
     <div className="flex items-center justify-between">
-      <dt className={strong ? "font-semibold text-foreground" : "text-muted-foreground"}>{label}</dt>
+      <dt className={strong ? "font-semibold text-foreground" : "text-muted-foreground"}>
+        {label}
+      </dt>
       <dd className={strong ? "font-semibold text-foreground" : "text-foreground"}>{value}</dd>
     </div>
   );

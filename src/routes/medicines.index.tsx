@@ -56,7 +56,7 @@ const sortOptions = [
 
 function CataloguePage() {
   const { category: initialCategory, q: initialQuery } = Route.useSearch();
-  const navigate = useNavigate({ from: "/medicines" });
+  const navigate = useNavigate({ from: "/medicines/" });
 
   const [query, setQuery] = useState(initialQuery ?? "");
   const [category, setCategory] = useState<string>(initialCategory ?? "all");
@@ -83,7 +83,7 @@ function CataloguePage() {
     setRx("all");
     setManufacturer("all");
     setSort("relevance");
-    void navigate({ search: {} });
+    void navigate({ search: () => ({}) });
   }
 
   const results = useMemo(() => {
@@ -113,6 +113,7 @@ function CataloguePage() {
     <CustomerLayout>
       <div className="container-page py-10">
         <SectionHeading
+          as="h1"
           title="All Medicines"
           description="Informational listing only — this is not medical advice."
         />

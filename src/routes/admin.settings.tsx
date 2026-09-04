@@ -2,7 +2,11 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Button } from "@/components/common/Button";
 import { Input } from "@/components/common/Input";
 import { SectionHeading } from "@/components/common/SectionHeading";
-import { DEFAULT_MAXIMUM_LEVEL, DEFAULT_REORDER_LEVEL, EXPIRY_RISK_MONTHS } from "@/utils/inventory-rules";
+import {
+  DEFAULT_MAXIMUM_LEVEL,
+  DEFAULT_REORDER_LEVEL,
+  EXPIRY_RISK_MONTHS,
+} from "@/utils/inventory-rules";
 
 const title = "Settings — MediTrack Admin";
 const description = "Pharmacy profile, inventory thresholds and notification preferences.";
@@ -22,7 +26,11 @@ export const Route = createFileRoute("/admin/settings")({
 function SettingsPage() {
   return (
     <div className="space-y-6">
-      <SectionHeading title="Settings" description="Values are placeholders — nothing is saved." />
+      <SectionHeading
+        as="h1"
+        title="Settings"
+        description="Values are placeholders — nothing is saved."
+      />
 
       <section className="rounded-xl border border-border bg-card p-5 shadow-card">
         <h2 className="mb-4 text-sm font-semibold text-foreground">Pharmacy Profile</h2>

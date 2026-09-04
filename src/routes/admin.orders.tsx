@@ -6,11 +6,7 @@ import { StatusBadge } from "@/components/common/StatusBadge";
 import { orders } from "@/data/orders";
 import type { Order } from "@/types/order";
 import { formatDate, formatINR, titleCase } from "@/utils/format";
-import {
-  orderStatusTone,
-  paymentStatusTone,
-  prescriptionStatusTone,
-} from "@/utils/status-tones";
+import { orderStatusTone, paymentStatusTone, prescriptionStatusTone } from "@/utils/status-tones";
 import { cn } from "@/lib/utils";
 
 const title = "Order Management — MediTrack Admin";
@@ -103,7 +99,7 @@ function AdminOrdersPage() {
 
   return (
     <div className="space-y-6">
-      <SectionHeading title="Orders" description="Order records come from mock data." />
+      <SectionHeading as="h1" title="Orders" description="Order records come from mock data." />
 
       <div className="flex flex-wrap gap-2">
         {filters.map((item) => (
