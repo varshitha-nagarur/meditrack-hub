@@ -61,6 +61,154 @@ export type Database = {
           },
         ]
       }
+      categories: {
+        Row: {
+          created_at: string
+          description: string
+          icon: string
+          id: string
+          name: string
+          sort_order: number
+        }
+        Insert: {
+          created_at?: string
+          description?: string
+          icon?: string
+          id: string
+          name: string
+          sort_order?: number
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          icon?: string
+          id?: string
+          name?: string
+          sort_order?: number
+        }
+        Relationships: []
+      }
+      medicine_batches: {
+        Row: {
+          batch_number: string
+          created_at: string
+          expiry_date: string | null
+          id: string
+          location: string
+          manufacturing_date: string | null
+          maximum_level: number
+          medicine_id: string
+          quantity: number
+          reorder_level: number
+          supplier: string
+        }
+        Insert: {
+          batch_number: string
+          created_at?: string
+          expiry_date?: string | null
+          id?: string
+          location?: string
+          manufacturing_date?: string | null
+          maximum_level?: number
+          medicine_id: string
+          quantity?: number
+          reorder_level?: number
+          supplier?: string
+        }
+        Update: {
+          batch_number?: string
+          created_at?: string
+          expiry_date?: string | null
+          id?: string
+          location?: string
+          manufacturing_date?: string | null
+          maximum_level?: number
+          medicine_id?: string
+          quantity?: number
+          reorder_level?: number
+          supplier?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "medicine_batches_medicine_id_fkey"
+            columns: ["medicine_id"]
+            isOneToOne: false
+            referencedRelation: "medicines"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      medicines: {
+        Row: {
+          category_id: string
+          composition: string
+          created_at: string
+          id: string
+          image_url: string | null
+          is_active: boolean
+          manufacturer: string
+          mrp: number
+          name: string
+          pack_size: string
+          prescription_required: boolean
+          price: number
+          rating: number
+          return_policy: string
+          storage_info: string
+          tags: string[]
+          updated_at: string
+          usage_info: string
+        }
+        Insert: {
+          category_id: string
+          composition: string
+          created_at?: string
+          id: string
+          image_url?: string | null
+          is_active?: boolean
+          manufacturer: string
+          mrp: number
+          name: string
+          pack_size?: string
+          prescription_required?: boolean
+          price: number
+          rating?: number
+          return_policy?: string
+          storage_info?: string
+          tags?: string[]
+          updated_at?: string
+          usage_info?: string
+        }
+        Update: {
+          category_id?: string
+          composition?: string
+          created_at?: string
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          manufacturer?: string
+          mrp?: number
+          name?: string
+          pack_size?: string
+          prescription_required?: boolean
+          price?: number
+          rating?: number
+          return_policy?: string
+          storage_info?: string
+          tags?: string[]
+          updated_at?: string
+          usage_info?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "medicines_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           created_at: string
@@ -90,6 +238,56 @@ export type Database = {
           updated_at?: string
         }
         Relationships: []
+      }
+      replenishment_requests: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          current_quantity: number
+          expiry_date: string | null
+          id: string
+          medicine_id: string
+          raised_on: string
+          status: string
+          supplier: string
+          target_quantity: number
+          trigger_type: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          current_quantity?: number
+          expiry_date?: string | null
+          id?: string
+          medicine_id: string
+          raised_on?: string
+          status?: string
+          supplier?: string
+          target_quantity?: number
+          trigger_type: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          current_quantity?: number
+          expiry_date?: string | null
+          id?: string
+          medicine_id?: string
+          raised_on?: string
+          status?: string
+          supplier?: string
+          target_quantity?: number
+          trigger_type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "replenishment_requests_medicine_id_fkey"
+            columns: ["medicine_id"]
+            isOneToOne: false
+            referencedRelation: "medicines"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       user_roles: {
         Row: {

@@ -8,6 +8,13 @@
       "when": 1793682478389,
       "tag": "0000_users_roles_profiles",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1793682510416,
+      "tag": "0001_catalogue_tables",
+      "breakpoints": true
     }
   ]
 }
